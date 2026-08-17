@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.beijing-chinese-ai/schemas/subskills.schema.json",
+  "title": "Subskill Catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "subskill_id",
+      "ability_id",
+      "subskill_name",
+      "definition",
+      "observable_behavior",
+      "source_refs",
+      "status"
+    ],
+    "properties": {
+      "subskill_id": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}\\d{2}-[A-Z0-9]+$"
+      },
+      "ability_id": {
+        "type": "string",
+        "pattern": "^(BA0[1-4]|LU0[1-4]|RD0[1-8]|CL0[1-4]|PO0[1-4]|WR0[1-6]|OC0[1-3]|MC0[1-3]|WB0[1-3])$"
+      },
+      "subskill_name": { "type": ["string", "null"], "minLength": 1 },
+      "definition": { "type": ["string", "null"], "minLength": 1 },
+      "observable_behavior": { "type": ["string", "null"], "minLength": 1 },
+      "source_refs": {
+        "type": "array",
+        "items": { "type": "string", "minLength": 1 },
+        "uniqueItems": true
+      },
+      "status": { "enum": ["active", "deprecated", "draft"] }
+    }
+  }
+}

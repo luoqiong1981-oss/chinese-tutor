@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.beijing-chinese-ai/schemas/session.schema.json",
+  "title": "Tutoring Session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "session_id",
+    "student_id",
+    "started_at",
+    "ended_at",
+    "session_type",
+    "target_ability_ids",
+    "learning_event_ids",
+    "summary",
+    "next_review_ability_ids"
+  ],
+  "properties": {
+    "session_id": { "type": "string", "minLength": 1 },
+    "student_id": {
+      "type": "string",
+      "pattern": "^STU-[A-Z0-9][A-Z0-9_-]{2,63}$"
+    },
+    "started_at": { "type": "string", "format": "date-time" },
+    "ended_at": {
+      "anyOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ]
+    },
+    "session_type": { "type": "string", "minLength": 1 },
+    "target_ability_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "learning_event_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "summary": { "type": ["string", "null"] },
+    "next_review_ability_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  }
+}

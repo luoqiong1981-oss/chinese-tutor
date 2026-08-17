@@ -1,0 +1,9 @@
+{
+  "student_id": "STU-MOCK-001",
+  "ability_id": "RD01",
+  "skill_state": "S0",
+  "confidence": null,
+  "evidence_count": 0,
+  "last_evaluated_at": null,
+  "next_review_at": null
+}

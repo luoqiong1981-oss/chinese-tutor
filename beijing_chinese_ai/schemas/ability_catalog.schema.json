@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.beijing-chinese-ai/schemas/ability_catalog.schema.json",
+  "title": "Beijing Chinese AI Ability Catalog v1.1",
+  "type": "array",
+  "minItems": 39,
+  "maxItems": 39,
+  "items": { "$ref": "#/$defs/ability" },
+  "$defs": {
+    "ability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ability_id",
+        "domain_code",
+        "architecture_type",
+        "ability_name",
+        "definition",
+        "assessment_focus",
+        "evidence_requirements",
+        "source_refs",
+        "version",
+        "status",
+        "needs_review"
+      ],
+      "properties": {
+        "ability_id": {
+          "type": "string",
+          "pattern": "^(BA0[1-4]|LU0[1-4]|RD0[1-8]|CL0[1-4]|PO0[1-4]|WR0[1-6]|OC0[1-3]|MC0[1-3]|WB0[1-3])$"
+        },
+        "domain_code": {
+          "enum": ["BA", "LU", "RD", "CL", "PO", "WR", "OC", "MC", "WB"]
+        },
+        "architecture_type": {
+          "enum": ["operational_domain", "cross_domain_module"]
+        },
+        "ability_name": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "definition": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "assessment_focus": {
+          "type": ["array", "null"],
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "evidence_requirements": {
+          "type": ["array", "null"],
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^1\\.1(?:\\.\\d+)?$"
+        },
+        "status": {
+          "enum": ["active", "deprecated", "draft"]
+        },
+        "needs_review": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "domain_code": { "const": "WB" } },
+            "required": ["domain_code"]
+          },
+          "then": {
+            "properties": { "architecture_type": { "const": "cross_domain_module" } }
+          },
+          "else": {
+            "properties": { "architecture_type": { "const": "operational_domain" } }
+          }
+        }
+      ]
+    }
+  }
+}

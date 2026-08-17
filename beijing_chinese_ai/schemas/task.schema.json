@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.beijing-chinese-ai/schemas/task.schema.json",
+  "title": "Diagnostic, Practice, or Transfer Task",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "task_type",
+    "domain_code",
+    "ability_ids",
+    "difficulty",
+    "material_source",
+    "prompt",
+    "answer_reference",
+    "evidence_reference",
+    "status"
+  ],
+  "properties": {
+    "task_id": { "type": "string", "minLength": 1 },
+    "task_type": { "type": "string", "minLength": 1 },
+    "domain_code": {
+      "enum": ["BA", "LU", "RD", "CL", "PO", "WR", "OC", "MC", "WB"]
+    },
+    "ability_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "difficulty": { "type": ["string", "number", "null"] },
+    "material_source": { "type": ["string", "object", "null"] },
+    "prompt": { "type": ["string", "null"] },
+    "answer_reference": { "type": ["string", "object", "array", "null"] },
+    "evidence_reference": { "type": ["string", "object", "array", "null"] },
+    "status": { "enum": ["draft", "active", "deprecated"] }
+  }
+}

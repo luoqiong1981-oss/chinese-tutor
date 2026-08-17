@@ -1,0 +1,8 @@
+{
+  "student_id": "STU-MOCK-001",
+  "display_alias": "匿名测试学生",
+  "grade_stage": "mock-stage",
+  "baseline_status": "unknown",
+  "created_at": "2026-08-16T00:00:00+08:00",
+  "updated_at": "2026-08-16T00:00:00+08:00"
+}

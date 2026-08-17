@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.beijing-chinese-ai/schemas/evidence_sources.schema.json",
+  "title": "Evidence Source Catalog",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "source_id",
+      "source_type",
+      "title",
+      "issuer_or_author",
+      "year",
+      "document_location",
+      "page_or_section",
+      "authority_level",
+      "notes"
+    ],
+    "properties": {
+      "source_id": { "type": "string", "minLength": 1 },
+      "source_type": {
+        "enum": [
+          "official_policy",
+          "curriculum_standard",
+          "exam",
+          "official_exam_analysis",
+          "research",
+          "class_material",
+          "original_text",
+          "other"
+        ]
+      },
+      "title": { "type": "string", "minLength": 1 },
+      "issuer_or_author": { "type": ["string", "null"], "minLength": 1 },
+      "year": {
+        "anyOf": [
+          { "type": "integer", "minimum": 1900, "maximum": 2100 },
+          { "type": "null" }
+        ]
+      },
+      "document_location": { "type": "string", "minLength": 1 },
+      "page_or_section": { "type": ["string", "null"], "minLength": 1 },
+      "authority_level": { "type": ["string", "null"], "minLength": 1 },
+      "notes": { "type": ["string", "null"] }
+    }
+  }
+}

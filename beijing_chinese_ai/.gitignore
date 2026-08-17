@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# IDE and operating-system files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+*~
+
+# Runtime logs (retain the directory marker)
+logs/*
+!logs/.gitkeep
+
+# Local exports containing private student data
+data/students/private/
+data/students/exports/
+data/students/local_exports/
+data/students/**/*-private.*
+data/students/**/*.private.*

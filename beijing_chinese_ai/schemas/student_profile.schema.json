@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.beijing-chinese-ai/schemas/student_profile.schema.json",
+  "title": "Pseudonymized Student Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "student_id",
+    "display_alias",
+    "grade_stage",
+    "baseline_status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "student_id": {
+      "type": "string",
+      "pattern": "^STU-[A-Z0-9][A-Z0-9_-]{2,63}$",
+      "description": "Pseudonymized permanent key; never use a real name."
+    },
+    "display_alias": { "type": ["string", "null"], "minLength": 1 },
+    "grade_stage": { "type": ["string", "null"], "minLength": 1 },
+    "baseline_status": {
+      "enum": ["unknown", "in_progress", "established"],
+      "default": "unknown"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}
